@@ -1,0 +1,68 @@
+<div class="container mt-4 mb-5">
+  <a routerLink="crear" class="btn btn-success">Crear Usuario</a>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Email</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Ver</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Eliminar</th>
+          <th scope="col">Desactivar/Activar</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (usuario of usuarios; track usuario.id) {
+        <tr class="">
+          <td scope="row">{{ usuario.nombre_completo }}</td>
+          <td>{{ usuario.email }}</td>
+          <td>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-circle-fill"
+              viewBox="0 0 16 16"
+              class="{{
+                usuario?.activo == 1 ? 'text-success' : 'text-danger'
+              }}"
+            >
+              <circle cx="8" cy="8" r="8" />
+            </svg>
+            {{ usuario.activo == 1 ? "Activo" : "Inactivo" }}
+          </td>
+          <td>
+            <a routerLink="{{ usuario.id }}" class="btn btn-primary">Ver</a>
+          </td>
+          <td>
+            <a routerLink="editar/{{ usuario.id }}" class="btn btn-warning"
+              >Editar</a
+            >
+          </td>
+          <td>
+            <button
+              class="btn btn-danger"
+              (click)="eliminarUsuario(usuario.id)"
+            >
+              Eliminar
+            </button>
+          </td>
+          <td>
+            <button
+              class="btn {{
+                usuario.activo == 1 ? 'btn-secondary' : 'btn-success'
+              }}"
+              (click)="habilitarDeshabilitarUsuario(usuario.id)"
+            >
+              {{ usuario.activo == 1 ? "Desactivar" : "Activar" }}
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

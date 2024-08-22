@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="card mt-4">
+    <div class="card-header bg-dark text-white text-center">
+      <h4 class="card-title">Crear Usuario</h4>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="formulario" (submit)="crearUsuario()">
+        <div class="mb-3">
+          <label for="nombre" class="form-label"
+            >Nombre Completo: @if(formulario.get("nombre_completo")?.touched &&
+            formulario.get("nombre_completo")?.errors?.['required']){
+            <small id="helpId" class="form-text text-danger text-italic">
+              - Este campo es requerido
+            </small>
+            }
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            name="nombre"
+            id="nombre"
+            placeholder="Ingrese su nombre completo"
+            formControlName="nombre_completo"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label"
+            >Email: @if(formulario.get("email")?.touched &&
+            formulario.get("email")?.errors?.['required']){
+            <small id="helpId" class="form-text text-danger text-italic">
+              - Este campo es requerido
+            </small>
+            }
+          </label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            id="email"
+            placeholder="Ingrese su email"
+            formControlName="email"
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="contrasenia" class="form-label"
+            >Contraseña: @if(formulario.get("contrasenia")?.touched &&
+            formulario.get("contrasenia")?.errors?.['required']){
+            <small id="helpId" class="form-text text-danger text-italic">
+              - Este campo es requerido
+            </small>
+            }
+          </label>
+          <input
+            type="password"
+            class="form-control"
+            name="contrasenia"
+            id="contrasenia"
+            placeholder="Ingrese su contraseña"
+            formControlName="contrasenia"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label for="contrasenia2" class="form-label"
+            >Verificar Contraseña @if(formulario.get("contrasenia2")?.touched &&
+            formulario.get("contrasenia2")?.errors?.['required']){
+            <small id="helpId" class="form-text text-danger text-italic">
+              - Este campo es requerido
+            </small>
+            }
+          </label>
+          <input
+            type="password"
+            class="form-control"
+            name="contrasenia2"
+            id="contrasenia2"
+            placeholder="Verifique su contraseña"
+            formControlName="contrasenia2"
+          />
+        </div>
+
+        <div class="btn-group d-flex justify-content-center">
+          <button
+            type="submit"
+            class="btn btn-success m-2"
+            [disabled]="!formulario.valid"
+          >
+            Guardar
+          </button>
+          <a routerLink="/usuarios" class="btn btn-outline-danger m-2">
+            Cancelar
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
